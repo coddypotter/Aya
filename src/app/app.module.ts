@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatToolbarModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatToolbarModule, MatListModule } from '@angular/material';
 import { SearchComponent } from './search/search.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './http.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,15 +15,17 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatInputModule, 
+    MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatListModule,
     MatIconModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

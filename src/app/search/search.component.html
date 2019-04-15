@@ -2,7 +2,19 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
         <mat-icon class="searchIcon" aria-hidden="false" aria-label="Example heart icon">search</mat-icon>
-        <input class="searchBox" placeholder="Search ...">
+        <input class="searchBox" placeholder="Search ..." (keyup)="searchKeyword($event)" >
     </mat-toolbar-row>
   </mat-toolbar>
+  <div class="searchResults">
+    <mat-list>
+      <mat-list-item *ngFor="let video of videoList">
+        <img matListAvatar src="{{video.snippet.thumbnails.default.url}}" alt="...">
+        <h3 matLine> {{video.snippet.title}} </h3>
+        <p matLine>
+          <span> {{video.snippet.channelTitle}} </span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+
+  </div>
 </div>
