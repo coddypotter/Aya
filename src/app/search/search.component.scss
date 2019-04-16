@@ -7,7 +7,11 @@
     height: 100%;
     left: 0px;
     top: 0px;
-    background-color: aliceblue;
+
+}
+::ng-deep .mat-line{
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
 
 }
 .searchIcon{
@@ -31,4 +35,24 @@
 .searchResults{
   overflow-y: scroll;
   height: calc(100% - 60px);
+  width: 100%;
+}
+.list{
+  margin-bottom: 28px !important;
+  padding-bottom: 28px !important;
+  margin-top: 10px !important;
+  border-bottom: solid 1px #bbb;
+}
+.imgIcon{
+  border-radius: 0px !important;
+  width: 80px !important;
+}
+.vtitle{
+  font-size: 16px;
+  font-family: 'Fira Sans', sans-serif;
+}
+.channelName{
+  font-size: 12px;
+  font-family: 'Fira Sans', sans-serif;
+
 }

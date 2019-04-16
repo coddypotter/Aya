@@ -1,20 +1,20 @@
 <div class="container">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <mat-icon class="searchIcon" aria-hidden="false" aria-label="Example heart icon">search</mat-icon>
+        <mat-icon class="searchIcon" aria-hidden="false" aria-label="Example heart icon" (click)="scrollTo(15)">search</mat-icon>
         <input class="searchBox" placeholder="Search ..." (keyup)="searchKeyword($event)" >
     </mat-toolbar-row>
   </mat-toolbar>
-  <div class="searchResults">
+  <cdk-virtual-scroll-viewport class="searchResults" itemSize="100" (scrolledIndexChange)="scrollEvent($event)" >
     <mat-list>
-      <mat-list-item *ngFor="let video of videoList">
+      <mat-list-item *cdkVirtualFor="let video of videoList" class="list" (click)="openPlayer(video)">
         <img matListAvatar src="{{video.snippet.thumbnails.default.url}}" alt="...">
-        <h3 matLine> {{video.snippet.title}} </h3>
+        <h3 matLine class="vtitle"> {{video.snippet.title}} </h3>
         <p matLine>
-          <span> {{video.snippet.channelTitle}} </span>
+          <span class='channelName'> {{video.snippet.channelTitle}} </span>
         </p>
       </mat-list-item>
     </mat-list>
 
-  </div>
+  </cdk-virtual-scroll-viewport>
 </div>
