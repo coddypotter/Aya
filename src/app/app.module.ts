@@ -8,13 +8,17 @@ import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatToo
 import { SearchComponent } from './search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './http.service';
+import { PlayerComponent } from './player/player.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
+    ScrollingModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
