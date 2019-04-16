@@ -1,0 +1,24 @@
+<div class="container">
+  <!-- <mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon" [routerLink]="['']">arrow_back</mat-icon>
+
+      <span>Aya</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar> -->
+
+  <iframe [src]='url' frameborder="0" width="100%" height="250px" allowfullscreen></iframe>
+
+  <div class="videoDetails" *ngIf="videoDetail">
+    <div class="vtitle">
+      {{videoDetail.snippet.title}}
+    </div>
+    <div class="vdesc">
+      {{videoDetail.snippet.description}}
+    </div>
+
+
+  </div>
+</div>
