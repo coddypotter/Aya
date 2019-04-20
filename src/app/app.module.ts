@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './http.service';
 import { PlayerComponent } from './player/player.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatSelectModule,
     MatListModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

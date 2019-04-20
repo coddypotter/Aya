@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { SwUpdate } from '@angular/service-worker';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -22,8 +24,16 @@ export class SearchComponent implements OnInit {
   searchTextChanged = new Subject<string>();
   subscription;
 
-  constructor(private http: HttpService, private router: Router, private scrollDispatcher: ScrollDispatcher, private cD: ChangeDetectorRef) {
+  constructor(private http: HttpService, private router: Router, private scrollDispatcher: ScrollDispatcher, private cD: ChangeDetectorRef, private sw: SwUpdate) {
 
+  }
+
+  checkForSWUpdates(){
+    if(this.sw.isEnabled){
+      this.sw.available.subscribe(
+        data => window.location.reload()
+      )
+    }
   }
 
   init(){
