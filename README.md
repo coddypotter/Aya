@@ -2,26 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
-## Development server
+---
+## Problem Statement:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A simple responsive page, takes in a search query. Uses Google’s public search listing API from
+YouTube (https://developers.google.com/youtube/v3/docs/search/list) to generate a list of videos. Default
+sort order is fine. The page should be optimised for rapid scroll, allowing users to quickly identify the
+video to watch.
 
-## Code scaffolding
+## Install Latest Angular  Cli
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+npm i -g @angular/cli
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Clone & Start Project
 
-## Running unit tests
+git clone https://github.com/coddypotter/Aya
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+cd Aya
 
-## Running end-to-end tests
+npm i
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+ng serve -o
