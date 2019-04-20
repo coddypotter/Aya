@@ -5,6 +5,8 @@ import { debounceTime, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { SwUpdate } from '@angular/service-worker';
+import { ConnectionService } from '../connection.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-search',
@@ -23,8 +25,11 @@ export class SearchComponent implements OnInit {
   //debouncing search for better UX
   searchTextChanged = new Subject<string>();
   subscription;
+  connectionStatus: boolean;
 
-  constructor(private http: HttpService, private router: Router, private scrollDispatcher: ScrollDispatcher, private cD: ChangeDetectorRef, private sw: SwUpdate) {
+  constructor(private http: HttpService, private router: Router, private scrollDispatcher: ScrollDispatcher, 
+    private cD: ChangeDetectorRef, private sw: SwUpdate, private connection: ConnectionService,
+    private snackBar: MatSnackBar) {
 
   }
 
@@ -51,6 +56,12 @@ export class SearchComponent implements OnInit {
     pipe(
       debounceTime(500)
     ).subscribe(value => this.searchVideos('q='+value));
+
+    this.connection.online$.subscribe( status => this.connectionStatus = status);
+  }
+
+  showOfflineSnackBar(){
+    this.snackBar.open('No Connection', 'Dismiss', {duration: 5000})
   }
   ngAfterViewInit() { // Pagination using page code by youtube api and VirtualScroll APi
     this.scrollDispatcher.scrolled().pipe(
@@ -65,7 +76,7 @@ export class SearchComponent implements OnInit {
   }
 
   scrollTo(index) {
-    this.viewport.scrollToIndex(index)
+    this.viewport.scrollToIndex(index, 'smooth')
   }
   searchVideos(value, append=false){
     this.http.searchVideos(value).subscribe(
@@ -85,8 +96,15 @@ export class SearchComponent implements OnInit {
   }
 
   openPlayer(video) {
+    // Handle online offline mode of the app
+    if(!this.connectionStatus){
+      this.showOfflineSnackBar()
+      return;
+    }
     //store state
-    localStorage.clear()
+    localStorage.removeItem('snapshot')
+    localStorage.removeItem('scrollId')
+    localStorage.removeItem('pageId')
     localStorage.setItem('snapshot', JSON.stringify(this.videoList))
 
     //store scrolled index
